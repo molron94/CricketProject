@@ -23,7 +23,10 @@ Finally, I bucketed different scores batting first 2014 and after, and plotted t
 
 
 ### In the IPL-Over Stats
+
 ##### Target Variable: first innings runs
+
+#### Runs vs Wickets in each quarter
 
 I ran the same filters that I did in the Agg file. I also added over by over data about dots, runs, wickets to match_df. I also added cumulative stats about runs, dots, wickets upto a certain point. I then created 4 quarters of the innings to aggregate. I first ran a regression to find out the cost of a wicket in each quarter of the innings (results below). I found a fairly smooth linear decay, and this decay was to be expected. The cost of wickets in the last quarter was fit to only 3.2. 
 
@@ -35,12 +38,15 @@ I wondered if this was because teams that were doing well till this point took m
 ![Season Table](https://github.com/molron94/CricketProject/blob/master/Sanity%20Check.png)
 
 
+#### Runs vs Wickets and Dots in each quarter
+
 I then ran a regression with both wickets and dots (results below), and while the relationship between wickets remained linear, the cost of a wicket declined sharply (by 35-50%), suggesting that a big cost of wickets were additional dot balls, likely because of a fear of future wickets. The cost of a dot ball while similar in the first and second quarters, increased sharply in both the third and fourth quarters. In a fourth quarter of the innings, my regression suggested that a wicket falling was less significant, than the fact it likely fell off a dot ball! This model had an R^2 value of 0.55, meaning it explained 55% of the variance. 
 
 
 ![Season Table](https://github.com/molron94/CricketProject/blob/master/Wickets%20Dots%20Regression%20Results.png)
 
 
+#### Total Dots vs Wickets in each quarter
 
 Finally, I ran a regression of wickets in each quarter vs the total number of dot balls (results below), i.e. to see the number of dot balls each wicket creates. I once again found a linear decline, with each ball having a roughly 24% chance (29/120) of being a dot ball, without any wickets in the innings. A wicket in the first quarter added 4.35 dot balls, whereas a wicket in the last quarter added roughly 0.8. The reason it is less than 1, is because we need to add the chances of a dot ball (0.24) to the 0.8 number, giving us that each wicket (assuming it is on a dot ball), creates only 0.04 extra dot balls, in addition to the wicket delivery. This suggests that a new batsman does not need much time to get set at the end of an innings.
 
