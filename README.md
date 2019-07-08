@@ -12,8 +12,14 @@ The first thing I did was aggregate the number of runs scored by each team in ea
 
 Above you can see that the team that batted first scored faster and won less, which means that speed of run scoring is not a sensible way to compare batting 1st and 2nd. You can also see that average scores increased significantly 2014 and after, which likely had to do with more innovative batting techniques within the game. Therefore, I chose to focus my analysis on the team batting first 2014 and after (222 data points). 
 
+I examined the relationship between win rate of team batting first, and scoring rate, i.e. how much faster the team batting first scored runs. These variables were highly correlated (.82), so I ran a linear regression on them, and plotted the result on a scatter plot.
 
-I examined the relationship between win rate of team batting first, and scoring rate, i.e. how much faster the team batting first scored runs. These variables were highly correlated (.82), so I ran a linear regression on them, and plotted the result on a scatter plot. I also plotted a bar graph with the estimated win rate, and real win rate. Finally, I bucketed different scores batting first 2014 and after, and plotted the average score and win probability of each bucket on a scatter plot. 
+![Season Table](https://github.com/molron94/CricketProject/blob/master/Win%20Rate%20-%20Score%20Rate%20Scatter.png)
+
+Finally, I bucketed different scores batting first 2014 and after, and plotted the average score and win probability of each bucket on a scatter plot. You can see a steadily increasing relationship, with very low win probability for scores below 140 (25%), and very high win probability for scores above 200 (95%).
+
+![Season Table](https://github.com/molron94/CricketProject/blob/master/Runs-Wins%20Scatter.png)
+
 
 
 ### In the IPL-Over Stats
@@ -22,6 +28,7 @@ I examined the relationship between win rate of team batting first, and scoring 
 I ran the same filters that I did in the Agg file. I also added over by over data about dots, runs, wickets to match_df. I also added cumulative stats about runs, dots, wickets upto a certain point. I then created 4 quarters of the innings to aggregate. I first ran a regression to find out the cost of a wicket in each quarter of the innings. I found a fairly smooth linear decay, and this decay was to be expected. The cost of wickets in the last quarter was fit to only 3.2. I wondered if this was because teams that were doing well till this point took more risks, and thus lost more wickets, skewing the data. This turned out not to be the case, as I found no relationship between wickets lost in the first 3 quarters and wickets lost in the fourth quarter. 
 
 I then ran a regression with both wickets and dots, and while the relationship between wickets remained linear, the cost of a wicket declined sharply (by 35-50%), suggesting that a big cost of wickets were additional dot balls, likely because of a fear of future wickets. The cost of a dot ball while similar in the first and second quarters, increased sharply in both the third and fourth quarters. In a fourth quarter of the innings, my regression suggested that a wicket falling was less significant, than the fact it likely fell off a dot ball! 
+
 
 Finally, I ran a regression of wickets in each quarter vs the total number of dot balls, i.e. to see the number of dot balls each wicket creates. I once again found a linear decline, with each ball having a roughly 24% chance (29/120) of being a dot ball, without any wickets in the innings. A wicket in the first quarter added 4.35 dot balls, whereas a wicket in the last quarter added roughly 0.8. The reason it is less than 1, is because we need to add the chances of a dot ball (0.24) to the 0.8 number, giving us that each wicket (assuming it is on a dot ball), creates only 0.04 extra dot balls, in addition to the wicket delivery. This suggests that a new batsman does not need much time to get set at the end of an innings.
 
